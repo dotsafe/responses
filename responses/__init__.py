@@ -797,6 +797,22 @@ class RequestsMock(object):
                 content_type=rsp["content_type"],
                 auto_calculate_content_length=rsp["auto_calculate_content_length"],
             )
+            if 'headers' in rsp.keys():
+                if response.headers:
+                    response.headers = response.headers | self._headers_from_string(rsp['headers'])
+                else:
+                    response.headers = self._headers_from_string(rsp['headers'])
+
+    def _headers_from_string(self, headers_string: str):
+        _headers = {}
+        tab = headers_string.split(';')
+        for line in tab:
+            if ':' not in line:
+                continue
+            key, value = line.split(':')
+            _headers[key.strip()] = value.strip()
+
+        return _headers
 
     def add_passthru(self, prefix: _URLPatternType) -> None:
         """

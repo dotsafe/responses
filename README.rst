@@ -109,6 +109,7 @@ will produce next output:
     status = 404
     content_type = "text/plain"
     auto_calculate_content_length = false
+    headers = "Content-Range: 1-100/100"
     [[responses]]
 
     [responses.response]
@@ -118,6 +119,7 @@ will produce next output:
     status = 400
     content_type = "text/plain"
     auto_calculate_content_length = false
+    headers = "Content-Range: 1-100/100"
     [[responses]]
 
     [responses.response]
@@ -127,6 +129,7 @@ will produce next output:
     status = 500
     content_type = "text/plain"
     auto_calculate_content_length = false
+    headers = "Content-Range: 1-100/100"
     [[responses]]
 
     [responses.response]
@@ -136,6 +139,7 @@ will produce next output:
     status = 202
     content_type = "text/plain"
     auto_calculate_content_length = false
+    headers = "Content-Range: 1-100/100"
 
 Replay responses (populate registry) from files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
