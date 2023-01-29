@@ -789,7 +789,7 @@ class RequestsMock(object):
 
         for rsp in data["responses"]:
             rsp = rsp["response"]
-            self.add(
+            response = self.add(
                 method=rsp["method"],
                 url=rsp["url"],
                 body=rsp["body"],
@@ -797,19 +797,21 @@ class RequestsMock(object):
                 content_type=rsp["content_type"],
                 auto_calculate_content_length=rsp["auto_calculate_content_length"],
             )
-            if 'headers' in rsp.keys():
+            if "headers" in rsp.keys():
                 if response.headers:
-                    response.headers = response.headers | self._headers_from_string(rsp['headers'])
+                    response.headers = response.headers | self._headers_from_string(
+                        rsp["headers"]
+                    )
                 else:
-                    response.headers = self._headers_from_string(rsp['headers'])
+                    response.headers = self._headers_from_string(rsp["headers"])
 
     def _headers_from_string(self, headers_string: str):
         _headers = {}
-        tab = headers_string.split(';')
+        tab = headers_string.split(";")
         for line in tab:
-            if ':' not in line:
+            if ":" not in line:
                 continue
-            key, value = line.split(':')
+            key, value = line.split(":")
             _headers[key.strip()] = value.strip()
 
         return _headers
